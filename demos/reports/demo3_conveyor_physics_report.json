@@ -1,0 +1,40 @@
+{
+  "name": "demo3_conveyor_physics",
+  "title": "Demo 3 \u2014 Conveyor with Physics Boxes",
+  "caption": "Kinematic belt + rigid-body boxes. Belt speed 0.3 m/s stored as metadata.",
+  "stage_path": "/home/horde/repos/veritas/scene/usd/demo3_conveyor_physics.usda",
+  "render": {
+    "path": "/home/horde/repos/veritas/demos/demo3_conveyor_physics.png",
+    "file_size_bytes": 691134,
+    "entropy": 3.4810930970712306,
+    "valid": true,
+    "elapsed_s": 2.37
+  },
+  "usd_audit": {
+    "prim_count": 26,
+    "violations": []
+  },
+  "spatial": {
+    "stage_path": "/home/horde/repos/veritas/scene/usd/demo3_conveyor_physics.usda",
+    "reachability": {
+      "robot_path": "(none)",
+      "robot_base_world": [
+        0,
+        0,
+        0
+      ],
+      "reach_radius_m": 0.0,
+      "zones": [],
+      "violations": []
+    },
+    "clash": {
+      "robot_path": "(none)",
+      "reach_radius_m": 0.0,
+      "clashes": [],
+      "violations": []
+    },
+    "all_violations": []
+  },
+  "verdict": "PASS",
+  "reason": "All checks passed. 26 prims, render valid."
+}

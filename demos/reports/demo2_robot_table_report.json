@@ -1,0 +1,40 @@
+{
+  "name": "demo2_robot_table",
+  "title": "Demo 2 \u2014 Robot on Table",
+  "caption": "FANUC CRX-10iA/L simplified arm on work table. ArticulationRootAPI validated.",
+  "stage_path": "/home/horde/repos/veritas/scene/usd/demo2_robot_table.usda",
+  "render": {
+    "path": "/home/horde/repos/veritas/demos/demo2_robot_table.png",
+    "file_size_bytes": 767464,
+    "entropy": 2.9599147685491243,
+    "valid": true,
+    "elapsed_s": 2.52
+  },
+  "usd_audit": {
+    "prim_count": 32,
+    "violations": []
+  },
+  "spatial": {
+    "stage_path": "/home/horde/repos/veritas/scene/usd/demo2_robot_table.usda",
+    "reachability": {
+      "robot_path": "/World/Robot",
+      "robot_base_world": [
+        0.0,
+        0.75,
+        0.0
+      ],
+      "reach_radius_m": 1.249,
+      "zones": [],
+      "violations": []
+    },
+    "clash": {
+      "robot_path": "/World/Robot",
+      "reach_radius_m": 1.249,
+      "clashes": [],
+      "violations": []
+    },
+    "all_violations": []
+  },
+  "verdict": "PASS",
+  "reason": "All checks passed. 32 prims, render valid."
+}

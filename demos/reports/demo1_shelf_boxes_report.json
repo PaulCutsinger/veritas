@@ -1,0 +1,40 @@
+{
+  "name": "demo1_shelf_boxes",
+  "title": "Demo 1 \u2014 Shelf with Boxes",
+  "caption": "Industrial shelf unit with 12 boxes. USD compliance + SimReady audit.",
+  "stage_path": "/home/horde/repos/veritas/scene/usd/demo1_shelf_boxes.usda",
+  "render": {
+    "path": "/home/horde/repos/veritas/demos/demo1_shelf_boxes.png",
+    "file_size_bytes": 1017158,
+    "entropy": 4.592685067489051,
+    "valid": true,
+    "elapsed_s": 2.26
+  },
+  "usd_audit": {
+    "prim_count": 50,
+    "violations": []
+  },
+  "spatial": {
+    "stage_path": "/home/horde/repos/veritas/scene/usd/demo1_shelf_boxes.usda",
+    "reachability": {
+      "robot_path": "(none)",
+      "robot_base_world": [
+        0,
+        0,
+        0
+      ],
+      "reach_radius_m": 0.0,
+      "zones": [],
+      "violations": []
+    },
+    "clash": {
+      "robot_path": "(none)",
+      "reach_radius_m": 0.0,
+      "clashes": [],
+      "violations": []
+    },
+    "all_violations": []
+  },
+  "verdict": "PASS",
+  "reason": "All checks passed. 50 prims, render valid."
+}

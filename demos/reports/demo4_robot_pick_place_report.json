@@ -1,0 +1,65 @@
+{
+  "name": "demo4_robot_pick_place",
+  "title": "Demo 4 \u2014 Robot Pick / Place Zones",
+  "caption": "Pick zone (green) and place zone (red) both within CRX-10iA/L 1.249 m reach.",
+  "stage_path": "/home/horde/repos/veritas/scene/usd/demo4_robot_pick_place.usda",
+  "render": {
+    "path": "/home/horde/repos/veritas/demos/demo4_robot_pick_place.png",
+    "file_size_bytes": 832473,
+    "entropy": 2.937021379628983,
+    "valid": true,
+    "elapsed_s": 2.44
+  },
+  "usd_audit": {
+    "prim_count": 36,
+    "violations": []
+  },
+  "spatial": {
+    "stage_path": "/home/horde/repos/veritas/scene/usd/demo4_robot_pick_place.usda",
+    "reachability": {
+      "robot_path": "/World/Robot",
+      "robot_base_world": [
+        0.0,
+        0.75,
+        0.0
+      ],
+      "reach_radius_m": 1.249,
+      "zones": [
+        {
+          "path": "/World/PickZone",
+          "zone_type": "pick",
+          "centroid": [
+            0.6,
+            0.75,
+            0.4
+          ],
+          "distance_m": 0.7211,
+          "reachable": true,
+          "margin_m": 0.5279
+        },
+        {
+          "path": "/World/PlaceZone",
+          "zone_type": "place",
+          "centroid": [
+            -0.5,
+            0.6,
+            0.6
+          ],
+          "distance_m": 0.7953,
+          "reachable": true,
+          "margin_m": 0.4537
+        }
+      ],
+      "violations": []
+    },
+    "clash": {
+      "robot_path": "/World/Robot",
+      "reach_radius_m": 1.249,
+      "clashes": [],
+      "violations": []
+    },
+    "all_violations": []
+  },
+  "verdict": "PASS",
+  "reason": "All checks passed. 36 prims, render valid."
+}

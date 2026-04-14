@@ -52,6 +52,8 @@ omit = [
     "veritas/impl/segmentation/sam_segmentor.py",
     "veritas/cli/*",
     "veritas/__main__.py",
+    # Scene generation scripts — tested via integration (test_spatial_auditor.py)
+    "veritas/scene_builder/*",
 ]
 
 [tool.coverage.report]

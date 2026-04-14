@@ -1,0 +1,404 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "World"
+{
+    def PhysicsScene "PhysicsScene"
+    {
+        vector3f physics:gravityDirection = (0, -1, 0)
+        float physics:gravityMagnitude = 9.81
+    }
+
+    def Xform "Lights"
+    {
+        def DomeLight "Dome"
+        {
+            color3f inputs:color = (0.9, 0.95, 1)
+            float inputs:intensity = 800
+        }
+
+        def DistantLight "Sun"
+        {
+            float inputs:intensity = 5000
+            float3 xformOp:rotateXYZ = (-55, 25, 0)
+            uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+        }
+    }
+
+    def Xform "Floor"
+    {
+        custom string semantics:labels = "floor"
+        double3 xformOp:translate = (0, -0.05, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Mesh "Mesh" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            float3[] extent = [(-5, -0.025, -5), (5, 0.025, 5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+            uniform token physics:approximation = "convexHull"
+            point3f[] points = [(-5, -0.025, -5), (5, -0.025, -5), (5, 0.025, -5), (-5, 0.025, -5), (-5, -0.025, 5), (5, -0.025, 5), (5, 0.025, 5), (-5, 0.025, 5)]
+        }
+    }
+
+    def Xform "WorkTable"
+    {
+        custom string semantics:labels = "table"
+        double3 xformOp:translate = (-0.65, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Xform "Top"
+        {
+            custom string semantics:labels = "table_top"
+            double3 xformOp:translate = (0, 0.73, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.7, -0.02, -0.4), (0.7, 0.02, 0.4)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.7, -0.02, -0.4), (0.7, -0.02, -0.4), (0.7, 0.02, -0.4), (-0.7, 0.02, -0.4), (-0.7, -0.02, 0.4), (0.7, -0.02, 0.4), (0.7, 0.02, 0.4), (-0.7, 0.02, 0.4)]
+                color3f[] primvars:displayColor = [(0.7, 0.65, 0.55)]
+            }
+        }
+
+        def Xform "Leg_0"
+        {
+            double3 xformOp:translate = (-0.6399999999999999, 0.355, -0.34)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.03, -0.355, -0.03), (0.03, 0.355, 0.03)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.03, -0.355, -0.03), (0.03, -0.355, -0.03), (0.03, 0.355, -0.03), (-0.03, 0.355, -0.03), (-0.03, -0.355, 0.03), (0.03, -0.355, 0.03), (0.03, 0.355, 0.03), (-0.03, 0.355, 0.03)]
+                color3f[] primvars:displayColor = [(0.7, 0.65, 0.55)]
+            }
+        }
+
+        def Xform "Leg_1"
+        {
+            double3 xformOp:translate = (0.6399999999999999, 0.355, -0.34)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.03, -0.355, -0.03), (0.03, 0.355, 0.03)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.03, -0.355, -0.03), (0.03, -0.355, -0.03), (0.03, 0.355, -0.03), (-0.03, 0.355, -0.03), (-0.03, -0.355, 0.03), (0.03, -0.355, 0.03), (0.03, 0.355, 0.03), (-0.03, 0.355, 0.03)]
+                color3f[] primvars:displayColor = [(0.7, 0.65, 0.55)]
+            }
+        }
+
+        def Xform "Leg_2"
+        {
+            double3 xformOp:translate = (-0.6399999999999999, 0.355, 0.34)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.03, -0.355, -0.03), (0.03, 0.355, 0.03)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.03, -0.355, -0.03), (0.03, -0.355, -0.03), (0.03, 0.355, -0.03), (-0.03, 0.355, -0.03), (-0.03, -0.355, 0.03), (0.03, -0.355, 0.03), (0.03, 0.355, 0.03), (-0.03, 0.355, 0.03)]
+                color3f[] primvars:displayColor = [(0.7, 0.65, 0.55)]
+            }
+        }
+
+        def Xform "Leg_3"
+        {
+            double3 xformOp:translate = (0.6399999999999999, 0.355, 0.34)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.03, -0.355, -0.03), (0.03, 0.355, 0.03)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.03, -0.355, -0.03), (0.03, -0.355, -0.03), (0.03, 0.355, -0.03), (-0.03, 0.355, -0.03), (-0.03, -0.355, 0.03), (0.03, -0.355, 0.03), (0.03, 0.355, 0.03), (-0.03, 0.355, 0.03)]
+                color3f[] primvars:displayColor = [(0.7, 0.65, 0.55)]
+            }
+        }
+    }
+
+    def Xform "Robot" (
+        prepend apiSchemas = ["PhysicsArticulationRootAPI"]
+    )
+    {
+        custom string semantics:labels = "robot_arm"
+        custom string[] veritas:clash_check_targets = ["/World/Conveyor"]
+        double3 xformOp:translate = (-0.65, 0.75, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Xform "Base"
+        {
+            def Cylinder "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                double height = 0.25
+                color3f[] primvars:displayColor = [(0.85, 0.85, 0.85)]
+                double radius = 0.12
+                double3 xformOp:translate = (0, 0.125, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Xform "Link1"
+        {
+            double3 xformOp:translate = (0, 0.25, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cylinder "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                double height = 0.18
+                color3f[] primvars:displayColor = [(0.85, 0.85, 0.85)]
+                double radius = 0.09
+                double3 xformOp:translate = (0, 0.09, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Xform "Link2"
+        {
+            float3 xformOp:rotateXYZ = (45, 0, 0)
+            double3 xformOp:translate = (0, 0.43, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+
+            def Cylinder "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                double height = 0.45
+                color3f[] primvars:displayColor = [(0.85, 0.85, 0.85)]
+                double radius = 0.07
+                double3 xformOp:translate = (0, 0.225, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Xform "Link3"
+        {
+            float3 xformOp:rotateXYZ = (-30, 0, 0)
+            double3 xformOp:translate = (0, 0.45, 0.318)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+
+            def Cylinder "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                double height = 0.35
+                color3f[] primvars:displayColor = [(0.85, 0.85, 0.85)]
+                double radius = 0.055
+                double3 xformOp:translate = (0, 0.175, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Xform "Wrist"
+        {
+            double3 xformOp:translate = (0, 0.35, 0.175)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cylinder "Mesh"
+            {
+                double height = 0.08
+                color3f[] primvars:displayColor = [(0.3, 0.3, 0.3)]
+                double radius = 0.04
+                double3 xformOp:translate = (0, 0.04, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Sphere "ReachEnvelope"
+        {
+            color3f[] primvars:displayColor = [(0.2, 0.8, 0.2)]
+            float[] primvars:displayOpacity = [0.08]
+            uniform token purpose = "guide"
+            double radius = 1.249
+            custom double veritas:reach_radius_m = 1.249
+        }
+    }
+
+    def Xform "Conveyor"
+    {
+        custom double conveyor:belt_speed_mps = 0.4
+        custom string semantics:labels = "conveyor"
+        double3 xformOp:translate = (0.5, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Xform "Frame"
+        {
+            double3 xformOp:translate = (0, 0.85, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.3, -0.05, -1.75), (0.3, 0.05, 1.75)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.3, -0.05, -1.75), (0.3, -0.05, -1.75), (0.3, 0.05, -1.75), (-0.3, 0.05, -1.75), (-0.3, -0.05, 1.75), (0.3, -0.05, 1.75), (0.3, 0.05, 1.75), (-0.3, 0.05, 1.75)]
+                color3f[] primvars:displayColor = [(0.3, 0.3, 0.35)]
+            }
+        }
+
+        def Xform "Belt" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI"]
+        )
+        {
+            custom string conveyor:velocity_axis = "Z"
+            custom double conveyor:velocity_mps = 0.4
+            bool physics:kinematicEnabled = 1
+            double3 xformOp:translate = (0, 0.86, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.29, -0.01, -1.74), (0.29, 0.01, 1.74)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                uniform token physics:approximation = "convexHull"
+                point3f[] points = [(-0.29, -0.01, -1.74), (0.29, -0.01, -1.74), (0.29, 0.01, -1.74), (-0.29, 0.01, -1.74), (-0.29, -0.01, 1.74), (0.29, -0.01, 1.74), (0.29, 0.01, 1.74), (-0.29, 0.01, 1.74)]
+                color3f[] primvars:displayColor = [(0.15, 0.15, 0.15)]
+            }
+        }
+
+        def Xform "Leg_0"
+        {
+            double3 xformOp:translate = (-0.25, 0.39999999999999997, -1.65)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.03, -0.4, -0.03), (0.03, 0.4, 0.03)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.03, -0.4, -0.03), (0.03, -0.4, -0.03), (0.03, 0.4, -0.03), (-0.03, 0.4, -0.03), (-0.03, -0.4, 0.03), (0.03, -0.4, 0.03), (0.03, 0.4, 0.03), (-0.03, 0.4, 0.03)]
+                color3f[] primvars:displayColor = [(0.3, 0.3, 0.35)]
+            }
+        }
+
+        def Xform "Leg_1"
+        {
+            double3 xformOp:translate = (0.25, 0.39999999999999997, -1.65)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.03, -0.4, -0.03), (0.03, 0.4, 0.03)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.03, -0.4, -0.03), (0.03, -0.4, -0.03), (0.03, 0.4, -0.03), (-0.03, 0.4, -0.03), (-0.03, -0.4, 0.03), (0.03, -0.4, 0.03), (0.03, 0.4, 0.03), (-0.03, 0.4, 0.03)]
+                color3f[] primvars:displayColor = [(0.3, 0.3, 0.35)]
+            }
+        }
+
+        def Xform "Leg_2"
+        {
+            double3 xformOp:translate = (-0.25, 0.39999999999999997, 1.65)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.03, -0.4, -0.03), (0.03, 0.4, 0.03)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.03, -0.4, -0.03), (0.03, -0.4, -0.03), (0.03, 0.4, -0.03), (-0.03, 0.4, -0.03), (-0.03, -0.4, 0.03), (0.03, -0.4, 0.03), (0.03, 0.4, 0.03), (-0.03, 0.4, 0.03)]
+                color3f[] primvars:displayColor = [(0.3, 0.3, 0.35)]
+            }
+        }
+
+        def Xform "Leg_3"
+        {
+            double3 xformOp:translate = (0.25, 0.39999999999999997, 1.65)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Mesh "Mesh" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.03, -0.4, -0.03), (0.03, 0.4, 0.03)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+                point3f[] points = [(-0.03, -0.4, -0.03), (0.03, -0.4, -0.03), (0.03, 0.4, -0.03), (-0.03, 0.4, -0.03), (-0.03, -0.4, 0.03), (0.03, -0.4, 0.03), (0.03, 0.4, 0.03), (-0.03, 0.4, 0.03)]
+                color3f[] primvars:displayColor = [(0.3, 0.3, 0.35)]
+            }
+        }
+    }
+
+    def Xform "Box_00" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        float physics:mass = 1
+        custom string semantics:labels = "conveyor_box"
+        double3 xformOp:translate = (0.5, 0.98, -0.8)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Mesh "Mesh" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            float3[] extent = [(-0.11, -0.11, -0.11), (0.11, 0.11, 0.11)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+            uniform token physics:approximation = "convexHull"
+            point3f[] points = [(-0.11, -0.11, -0.11), (0.11, -0.11, -0.11), (0.11, 0.11, -0.11), (-0.11, 0.11, -0.11), (-0.11, -0.11, 0.11), (0.11, -0.11, 0.11), (0.11, 0.11, 0.11), (-0.11, 0.11, 0.11)]
+            color3f[] primvars:displayColor = [(0.8, 0.4, 0.1)]
+        }
+    }
+
+    def Xform "Box_01" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        float physics:mass = 1
+        custom string semantics:labels = "conveyor_box"
+        double3 xformOp:translate = (0.5, 0.98, 0.4)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Mesh "Mesh" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            float3[] extent = [(-0.11, -0.11, -0.11), (0.11, 0.11, 0.11)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 0, 4, 7, 3, 1, 5, 6, 2, 0, 1, 5, 4, 3, 2, 6, 7]
+            uniform token physics:approximation = "convexHull"
+            point3f[] points = [(-0.11, -0.11, -0.11), (0.11, -0.11, -0.11), (0.11, 0.11, -0.11), (-0.11, 0.11, -0.11), (-0.11, -0.11, 0.11), (0.11, -0.11, 0.11), (0.11, 0.11, 0.11), (-0.11, 0.11, 0.11)]
+            color3f[] primvars:displayColor = [(0.8, 0.4, 0.1)]
+        }
+    }
+}
+

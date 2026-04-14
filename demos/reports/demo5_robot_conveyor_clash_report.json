@@ -1,0 +1,55 @@
+{
+  "name": "demo5_robot_conveyor_clash",
+  "title": "Demo 5 \u2014 Robot + Conveyor CLASH ALERT",
+  "caption": "Robot reach envelope overlaps conveyor by 0.399 m \u2014 CRITICAL clash detected.",
+  "stage_path": "/home/horde/repos/veritas/scene/usd/demo5_robot_conveyor_clash.usda",
+  "render": {
+    "path": "/home/horde/repos/veritas/demos/demo5_robot_conveyor_clash.png",
+    "file_size_bytes": 834158,
+    "entropy": 3.6479687014662625,
+    "valid": true,
+    "elapsed_s": 2.52
+  },
+  "usd_audit": {
+    "prim_count": 47,
+    "violations": []
+  },
+  "spatial": {
+    "stage_path": "/home/horde/repos/veritas/scene/usd/demo5_robot_conveyor_clash.usda",
+    "reachability": {
+      "robot_path": "/World/Robot",
+      "robot_base_world": [
+        -0.65,
+        0.75,
+        0.0
+      ],
+      "reach_radius_m": 1.249,
+      "zones": [],
+      "violations": []
+    },
+    "clash": {
+      "robot_path": "/World/Robot",
+      "reach_radius_m": 1.249,
+      "clashes": [
+        {
+          "target_path": "/World/Conveyor",
+          "overlap_m": 0.399,
+          "nearest_point": [
+            0.2,
+            0.75,
+            0.0
+          ],
+          "severity": "critical"
+        }
+      ],
+      "violations": [
+        "[clash:critical] Robot reach envelope overlaps /World/Conveyor by 0.399 m \u2014 nearest point (0.2, 0.75, 0.0)"
+      ]
+    },
+    "all_violations": [
+      "[clash:critical] Robot reach envelope overlaps /World/Conveyor by 0.399 m \u2014 nearest point (0.2, 0.75, 0.0)"
+    ]
+  },
+  "verdict": "FAIL",
+  "reason": "CRITICAL clash detected: [clash:critical] Robot reach envelope overlaps /World/Conveyor by 0.399 m \u2014 nearest point (0.2, 0.75, 0.0)"
+}
