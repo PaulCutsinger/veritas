@@ -3,6 +3,7 @@ veritas.interface.segmentor
 ----------------------------
 ABC for image segmentation backends.
 """
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod

@@ -3,7 +3,23 @@ name = "veritas"
 version = "0.1.0"
 description = "USD ground-truth validation: audit, render, segment, vision cross-check"
 requires-python = ">=3.10"
-dependencies = ["pydantic>=2", "anthropic>=0.25"]
+dependencies = [
+    "pydantic>=2",
+    "pillow>=10",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+vision = ["anthropic>=0.25"]
+usd = ["usd-core>=26"]
+dev = [
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "pytest>=7",
+    "pytest-cov",
+    "anthropic>=0.25",
+    "usd-core>=26",
+]
 
 [project.scripts]
 veritas = "veritas.cli.main:main"
@@ -11,3 +27,36 @@ veritas = "veritas.cli.main:main"
 [build-system]
 requires = ["setuptools>=42"]
 build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["B008"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+omit = [
+    # Stubs that require external environments (Isaac Sim, SAM, Anthropic API)
+    "veritas/impl/isaac/*",
+    "veritas/impl/vision/claude_vision.py",
+    "veritas/impl/segmentation/sam_segmentor.py",
+    "veritas/cli/*",
+    "veritas/__main__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]

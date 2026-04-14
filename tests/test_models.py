@@ -4,17 +4,16 @@ tests/test_models.py
 Unit tests that verify Pydantic models instantiate correctly.
 No Isaac Sim, Anthropic API, or filesystem access required.
 """
-import time
 
-import pytest
+import time
 
 from veritas.core.models import (
     PrimInfo,
     RenderResult,
     SegmentResult,
     UsdAuditResult,
-    VeritasReport,
     Verdict,
+    VeritasReport,
     VisionResult,
 )
 

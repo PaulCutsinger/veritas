@@ -8,10 +8,8 @@ This stub must be executed inside an Isaac Sim Python environment where
 NOT imported at module level in the CLI — instantiate it only inside an Isaac Sim
 script session.
 """
-from __future__ import annotations
 
-import time
-from pathlib import Path
+from __future__ import annotations
 
 from ...core.models import RenderResult
 from ...interface.renderer import Renderer

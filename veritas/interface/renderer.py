@@ -3,6 +3,7 @@ veritas.interface.renderer
 ---------------------------
 ABC for scene renderers.
 """
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod

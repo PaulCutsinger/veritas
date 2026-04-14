@@ -3,6 +3,7 @@ veritas.core.models
 -------------------
 Shared data models for the Veritas USD validation pipeline.
 """
+
 from __future__ import annotations
 
 import enum

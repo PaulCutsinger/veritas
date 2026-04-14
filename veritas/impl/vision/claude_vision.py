@@ -5,6 +5,7 @@ Concrete VisionBackend that uses the Anthropic Claude API to describe
 rendered factory scene images. Intended for cross-checking render outputs
 against USD stage intent.
 """
+
 from __future__ import annotations
 
 import base64
@@ -55,7 +56,7 @@ class ClaudeVisionBackend(VisionBackend):
     ) -> None:
         key = api_key or os.environ.get("ANTHROPIC_API_KEY")
         if not key:
-            raise EnvironmentError(
+            raise OSError(
                 "ANTHROPIC_API_KEY environment variable is not set and no api_key "
                 "was provided to ClaudeVisionBackend."
             )

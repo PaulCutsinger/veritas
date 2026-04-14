@@ -7,12 +7,14 @@ This is a structured stub ready to be filled in once a SAM checkpoint is
 available. Import-guard ensures the module loads cleanly even without the
 `segment_anything` package installed.
 """
+
 from __future__ import annotations
 
 from pathlib import Path
 
 try:
     from segment_anything import SamPredictor, sam_model_registry  # type: ignore
+
     _HAS_SAM = True
 except ImportError:
     _HAS_SAM = False
@@ -45,9 +47,9 @@ class SamSegmentor(Segmentor):
         self._checkpoint = Path(checkpoint)
         self._model_type = model_type
         self._device = device
-        self._predictor: "SamPredictor | None" = None
+        self._predictor: SamPredictor | None = None
 
-    def _load_model(self) -> "SamPredictor":
+    def _load_model(self) -> SamPredictor:
         if self._predictor is not None:
             return self._predictor
         if not self._checkpoint.exists():

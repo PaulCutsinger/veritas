@@ -8,18 +8,17 @@ Usage:
     veritas run   <stage.usd>         — full pipeline, prints report
     veritas run   <stage.usd> --no-vision --no-segmentation
 """
+
 from __future__ import annotations
 
 import argparse
-import json
 import sys
-from pathlib import Path
 
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="veritas",
-        description="USD scene ground-truth validation: audit, render, segment, vision cross-check.",
+        description="USD scene ground-truth validation: audit, render, segment, vision cross-check.",  # noqa: E501
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -81,9 +80,9 @@ def _cmd_audit(args: argparse.Namespace) -> int:
 
 def _cmd_run(args: argparse.Namespace) -> int:
     """Run the full validation pipeline."""
-    from ..impl.usd.prim_auditor import PrimAuditor
-    from ..impl.isaac.isaac_renderer import IsaacSimRenderer
     from ..core.pipeline import VeritasPipeline
+    from ..impl.isaac.isaac_renderer import IsaacSimRenderer
+    from ..impl.usd.prim_auditor import PrimAuditor
 
     auditor = PrimAuditor()
 
@@ -93,20 +92,25 @@ def _cmd_run(args: argparse.Namespace) -> int:
     vision = None
     if not args.no_vision:
         import os
+
         if os.environ.get("ANTHROPIC_API_KEY"):
             try:
                 from ..impl.vision.claude_vision import ClaudeVisionBackend
+
                 vision = ClaudeVisionBackend()
             except Exception as exc:
                 _warn(f"Vision backend unavailable, skipping: {exc}")
         else:
-            _warn("ANTHROPIC_API_KEY not set — skipping vision check. "
-                  "Pass --no-vision to suppress this warning.")
+            _warn(
+                "ANTHROPIC_API_KEY not set — skipping vision check. "
+                "Pass --no-vision to suppress this warning."
+            )
 
     segmentor = None
     if not args.no_segmentation:
         try:
             from ..impl.segmentation.sam_segmentor import SamSegmentor  # noqa: F401
+
             # Segmentor not yet configured — skip silently.
             _warn("SAM segmentor not configured (no checkpoint provided) — skipping.")
         except ImportError:

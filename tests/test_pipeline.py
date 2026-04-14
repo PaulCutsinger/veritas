@@ -4,31 +4,30 @@ tests/test_pipeline.py
 Tests for VeritasPipeline using mock auditor and renderer.
 No Isaac Sim, Anthropic API, or real USD files required.
 """
+
 from __future__ import annotations
 
 import time
 from pathlib import Path
 
-import pytest
-
 from veritas.core.models import (
     PrimInfo,
     RenderResult,
+    SegmentResult,
     UsdAuditResult,
     Verdict,
     VisionResult,
-    SegmentResult,
 )
 from veritas.core.pipeline import VeritasPipeline
 from veritas.interface.renderer import Renderer
+from veritas.interface.segmentor import Segmentor
 from veritas.interface.usd_auditor import UsdAuditor
 from veritas.interface.vision_backend import VisionBackend
-from veritas.interface.segmentor import Segmentor
-
 
 # ---------------------------------------------------------------------------
 # Mock implementations
 # ---------------------------------------------------------------------------
+
 
 class _MockAuditor(UsdAuditor):
     def __init__(self, violations: list[str] | None = None):
@@ -86,6 +85,7 @@ class _MockSegmentor(Segmentor):
 # ---------------------------------------------------------------------------
 # Tests
 # ---------------------------------------------------------------------------
+
 
 class TestVeritasPipelinePass:
     def test_pass_with_valid_render(self, tmp_path):

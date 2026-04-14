@@ -5,45 +5,39 @@ The VeritasPipeline orchestrates the 6-step validation loop:
 
   USD audit → render → render-validate → segment → vision → verdict
 """
+
 from __future__ import annotations
 
-import math
-import os
-import time
 from pathlib import Path
 
-from .models import RenderResult, Verdict, VeritasReport
 from ..interface.renderer import Renderer
 from ..interface.segmentor import Segmentor
 from ..interface.sim_validator import SimValidator
 from ..interface.usd_auditor import UsdAuditor
 from ..interface.vision_backend import VisionBackend
+from .models import RenderResult, Verdict, VeritasReport
 
 # Thresholds for render validity checks
-_MIN_FILE_SIZE_BYTES = 10 * 1024   # 10 KB — rejects blank/black frames
-_MIN_ENTROPY = 0.5                 # bits per pixel (rough); 0 = solid colour
+_MIN_FILE_SIZE_BYTES = 10 * 1024  # 10 KB — rejects blank/black frames
+_MIN_ENTROPY = 0.5  # bits per pixel (rough); 0 = solid colour
 
 
 def _image_entropy(image_path: str) -> float:
-    """Estimate Shannon entropy of the image's pixel values (grayscale).
+    """Compute Shannon entropy of pixel values (bits), range [0, 8].
 
-    Returns a float in [0, 8] where 0 = solid colour and 8 = maximum variety.
-    Falls back to 0.0 if image libs are unavailable.
+    0 = solid colour (black frame), ~8 = maximum pixel variety.
+    Uses PIL + numpy for correctness. Falls back to 0.0 on error.
     """
     try:
-        # Use stdlib only — PIL is optional
-        import struct
-        import zlib
+        import numpy as np
+        from PIL import Image
 
-        data = Path(image_path).read_bytes()
-        # Compress the raw bytes; high compression ratio → low entropy
-        compressed_len = len(zlib.compress(data, level=9))
-        raw_len = len(data)
-        if raw_len == 0:
-            return 0.0
-        ratio = compressed_len / raw_len
-        # Map ratio to [0, 8]: ratio ~1.0 → high entropy; ratio ~0.01 → low entropy
-        return min(8.0, max(0.0, 8.0 * ratio))
+        img = Image.open(image_path).convert("L")  # grayscale → one channel
+        arr = np.array(img).flatten().astype(np.uint8)
+        _, counts = np.unique(arr, return_counts=True)
+        probs = counts / counts.sum()
+        entropy = float(-np.sum(probs * np.log2(probs + 1e-12)))
+        return max(0.0, min(8.0, entropy))
     except Exception:
         return 0.0
 

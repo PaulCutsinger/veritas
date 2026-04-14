@@ -3,6 +3,7 @@ veritas.interface.vision_backend
 ---------------------------------
 ABC for vision/LLM backends that describe rendered images.
 """
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
