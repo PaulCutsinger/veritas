@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+*.whl
+.venv/
+venv/
+env/
+.env
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.junit.xml
+
+# Type checking
+.mypy_cache/
+.pyright/
+.ruff_cache/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Veritas outputs
+veritas_out/
+
+# USD outputs generated during runs (not source assets)
+*_render.usd
+*_render.usda
+*_baked.usd
+*_baked.usda
+
+# Isaac Sim / Omniverse
+.nvidia-omni-kit/
+kit/
+_build/
+_repo/
+
+# OS
+.DS_Store
+Thumbs.db
